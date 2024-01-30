@@ -2,41 +2,67 @@ import { useEffect, useState } from "react"
 import { Document, Page, pdfjs } from 'react-pdf';
 import { toast } from "react-toastify";
 import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
+import backSign from "../Assets/back.png"
 pdfjs.GlobalWorkerOptions.workerSrc = `https://unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`;
 
-const PdfViewer = ({ pdfFile}) => {
-    console.log(pdfFile)
-    const [numPages, setNumPages] = useState(null);
-    const [pageNumber, setPageNumber] = useState(1);
-  
-    const onDocumentLoadSuccess = ({ numPages }) => {
-      setNumPages(numPages);
+const PdfViewer = ({ file }) => {
+  const [numPages, setNumPages] = useState(null);
+  const [pageNumber, setPageNumber] = useState(1);
+  const [pdfData, setPdfData] = useState(null);
+  // console.log(file)
+  useEffect(() => {
+    const fetchPdfData = async () => {
+      try {
+        const response = await fetch(`/print/get-pdf`,{
+          method:"POST",
+          credentials:"omit",
+          headers:{
+            'Content-Type': 'application/json',
+            // 'Content-Type': 'application/pdf',
+          },
+          body:JSON.stringify({file})
+        });
+        const data = await response.blob();
+        // const data = await response.json();
+        setPdfData(data);
+        console.log(data)
+      } catch (error) {
+        console.error('Error fetching PDF:', error);
+      }
     };
-  
-    return (
-      <div className="pdf-div">
-        <Document className='pdf-doc'
-          file={"../../../server/uploads/prints/"+pdfFile.filename}
-          onLoadSuccess={onDocumentLoadSuccess}
-          onError={(err)=>{console.log("ERRRR: ",err)}}
-        >
-          <Page className='pdf-page'  height={370} renderTextLayer={false} pageNumber={pageNumber} devicePixelRatio={7} />
-        </Document>
-        <div className="document-pages">
-          <div className="page-minus" onClick={()=>{pageNumber>1?setPageNumber(pageNumber-1):setPageNumber(pageNumber)}}><img src='https://cdn-icons-png.flaticon.com/128/56/56889.png'/></div>
-          <p>
-            {pageNumber} / {numPages}
-          </p>
-          <div className="page-plus" onClick={()=>{pageNumber<numPages?setPageNumber(pageNumber+1):setPageNumber(pageNumber)}}><img src='https://cdn-icons-png.flaticon.com/128/3524/3524388.png'/></div>
-        </div>
-      </div>
-    );
+
+    fetchPdfData();
+  }, []);
+
+  const onDocumentLoadSuccess = ({ numPages }) => {
+    setNumPages(numPages);
   };
+
+  return (
+    <div className="pdf-div">
+      <Document className='pdf-doc'
+        file={pdfData}
+        onLoadSuccess={onDocumentLoadSuccess}
+      >
+        <Page className='pdf-page'  height={350} renderTextLayer={false} pageNumber={pageNumber} devicePixelRatio={7} />
+      </Document>
+      <div className="document-pages">
+        <div className="page-minus" onClick={()=>{pageNumber>1?setPageNumber(pageNumber-1):setPageNumber(pageNumber)}}><img src='https://cdn-icons-png.flaticon.com/128/56/56889.png'/></div>
+        <p>
+          {pageNumber} / {numPages}
+        </p>
+        <div className="page-plus" onClick={()=>{pageNumber<numPages?setPageNumber(pageNumber+1):setPageNumber(pageNumber)}}><img src='https://cdn-icons-png.flaticon.com/128/3524/3524388.png'/></div>
+      </div>
+    </div>
+  );
+};
+
 
 function ShopOrder({order, setOrder}){
     // const {order}=order;
     console.log(order)
-    const fileInfo=JSON.parse(order.fileInfo)
+    const fileInfo=order.fileInfo
+    // const fileInfo=JSON.parse(order.fileInfo)
     console.log(fileInfo)
     const [download,setDownload]=useState(false);
 
@@ -117,26 +143,68 @@ function ShopOrder({order, setOrder}){
 
     return(
         <>
-        <p onClick={()=>{setOrder()}}>X</p>
+        {/* <p className="cross-button" onClick={()=>{setOrder()}}>X</p> */}
         <main className="shop-order-main">
-            Token number: {order.tokenNumber}
-            Number of files: {order.files.length}
-            Amout received: {order.totalPrice}
+        <img className="back-button" onClick={()=>{setOrder()}} src={backSign}/> 
+        <div className="single-order-top">
+          <div>
+            <p>Order number</p>
+            <p>{order.tokenNumber}</p>
+          </div>
+          <div>
+            <p>Number of files</p>
+            <p>{order.files.length}</p>
+          </div>
+          <div>
+            <p>Amount received</p>
+            <p>₹{order.totalPrice}</p>
+          </div>
             <button onClick={()=>{downloadFiles(order)}}>Download all files</button>
+        </div>
+        <div className="order-files">
             {order.files.map((file,index)=>{
                 return(
-                    <div className="" onClick={()=>{singleDownload(file)}}>
-                        File name: {file.originalname}<br/>
-                        Pages to be printed: {fileInfo[index].pageRange}<br/>
-                        Color: {fileInfo[index].pageColor}<br/>
-                        Method: {fileInfo[index].pageMethod}<br/>
-                        Number of copies: {fileInfo[index].numberOfCopies}<br/>
-                        Note: {fileInfo[index].note}<br/>
-                        Price: {fileInfo[index].price}<br/>
-                    </div>
+                    <div className="shop-order">
+                      {/* <div className="shop-order-number">{index+1}</div> */}
+                        <div className="shop-details-container">
+                          <PdfViewer file={file}/>
+                          <div className="shop-order-right">
+                          <div>
+                              <h3>File name</h3>
+                              <p>{file.originalname}</p>
+                          </div>
+                          <div>
+                              <h3>Pages to be printed</h3>
+                              <p>{fileInfo[index].pageRange}</p>
+                          </div>
+                          <div>
+                              <h3>Color</h3>
+                              <p>{fileInfo[index].pageColor}</p>
+                          </div>
+                          <div>
+                              <h3>Method</h3>
+                              <p>{fileInfo[index].pageMethod}</p>
+                          </div>
+                          <div>
+                              <h3>Number of copies</h3>
+                              <p>{fileInfo[index].numberOfCopies}</p>
+                          </div>
+                          <div>
+                              <h3>Amount received for this file</h3>
+                              <p>₹{fileInfo[index].price}</p>
+                          </div>
+                          <div>
+                              <h3>Note</h3>
+                              <p>{fileInfo[index].note==""?"none":fileInfo[index].note}</p>
+                          </div>
+                        </div>
+                     </div>
+                    <button className="download-button" onClick={()=>{singleDownload(file)}}>Download</button>
+                  </div>
                 )
             })}
-            <div onClick={()=>{orderCompleted()}}>Order completed</div>
+        </div>
+            <div onClick={()=>{orderCompleted()}} className="order-completed">Mark as completed</div>
         </main>
         </>
     )

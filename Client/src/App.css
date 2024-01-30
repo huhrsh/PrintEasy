@@ -32,19 +32,19 @@
   left: 0;
 } */
 
-html::-webkit-scrollbar {
+*::-webkit-scrollbar {
   width: 6px;
 }
-html::-webkit-scrollbar-track {
+*::-webkit-scrollbar-track {
   background: #fff;
   /* background: transparent; */
 }
-html::-webkit-scrollbar-thumb {
+*::-webkit-scrollbar-thumb {
   background: #bfd8ff;
   /* background: #ecf1ff; */
   border-radius: 2px;
 }
-html::-webkit-scrollbar-thumb:hover {
+*::-webkit-scrollbar-thumb:hover {
   background: #a2c5fe;
   cursor: pointer;
 }
@@ -1070,13 +1070,14 @@ html::-webkit-scrollbar-thumb:hover {
 .store-search-heading{
   height: 8vh !important;
   cursor: default !important;
-  font-size: 1.4rem !important;
-  font-weight: 500;
-  color: #444;
+  font-size: 1.3rem !important;
+  font-weight: 400;
+  color: #333;
+  background-color: #bfd8ff !important;
 }
 
 .shop-list{
-  background-color: #e9f3ff;
+  background-color: #f4f9ff;
   width: 100%;
   display: flex;
   padding: 1%;
@@ -1088,6 +1089,10 @@ html::-webkit-scrollbar-thumb:hover {
   color: white;
   cursor: pointer;
   height: 20vh;
+}
+
+.shop-list p{
+  color: #555 !important;
 }
 
 .shop-list h2{
@@ -1117,13 +1122,15 @@ html::-webkit-scrollbar-thumb:hover {
   width: 5%;
   height: 100%;
   padding: 1.4%;
+  /* padding: 2%; */
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .selection-box{
-  border: 1.5px solid #bfd8ff;
+  border: 2px solid #bfd8ff;
+  border: 2px solid #daebff;
   background-color: white;
   border-radius: 50%;
   width: 100%;
@@ -1175,7 +1182,7 @@ html::-webkit-scrollbar-thumb:hover {
 }
 
 .selected-shop{
-  background: #8ac4ff;
+  background: #95befb;
   /* background-image: radial-gradient(#bfd8ff,#8ac4ff); */
   /* border: 2px solid white; */
   padding: 1%;
@@ -1194,7 +1201,9 @@ html::-webkit-scrollbar-thumb:hover {
   color: #333;
   background-color: #d5e6ff;
   cursor: pointer;
-  /* box-shadow: 0 0 2px 1px #bfd8ff; */
+  /* border: 1px solid #95befb; */
+  box-shadow: 0 0 1px 0.5px #95befb;
+  /* box-shadow: 0 0 2px 1px #fff; */
   &:hover{
     background-color: #bfd8ff;
   }
@@ -1216,7 +1225,206 @@ html::-webkit-scrollbar-thumb:hover {
 
 /* shop-order */
 .shop-order-main{
-  background-color: red;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
+  box-shadow: 0 0 1.5px 0.5px #bfd8ff;
+  padding: 1%;
+  /* background-color: red; */
+  position: relative;
+  scroll-behavior: smooth;
+  overflow-y: auto;
+  width: 100% !important;
+}
+
+.back-button{
+  cursor: pointer;
+  width: 3.5%;
+  position: absolute;
+  left: 2%;
+  top: 4.5%;
+  border-radius: 50%;
+  /* background-color: #e9f3ff; */
+  padding: 0.5%;
+  z-index: 3;
+  /* top: -2%; */
+}
+
+.single-order-top{
+  /* background-color: red; */
+  width: 88%;
+  /* height: 12vh; */
+  padding: 0.8% 0;
+  background-color: #deedff;
+  /* background-color: #bfd8ff; */
+  /* background-color: #95befb; */
+  display: flex;
+  font-size: 1rem;
+  justify-content: space-evenly;
+  align-items: center;
+  /* padding-bottom: 1%; */
+  /* border-bottom: 0.5px solid #bfd8ff; */
+  color: #333;
+}
+
+.single-order-top div p:first-child::after{
+  content: "";
+  position: absolute;
+  height: 1px ;
+  height: 0.7px ;
+  width: 100%;
+  left: 0;
+  bottom: 10%;
+  background-color: #95befb;
+  background-color: #444;
+}
+
+.single-order-top div p:first-child{
+  position: relative;
+  /* font-weight: 500 !important; */
+  font-size: 1.3rem;
+  color: #444;
+  margin-top: -2%;
+  /* background-color: firebrick; */
+}
+
+.single-order-top button{
+  width: 14%;
+  height: 6vh;
+  z-index: 6;
+  font-size: 1rem;
+  border-radius: 4vh;
+  border: none;
+  color: #333;
+  background-color: #cbe0ff;
+  cursor: pointer;
+  /* box-shadow: 0 0 2px 1px #bfd8ff; */
+  transition: all ease-in-out 0.2s;
+  background-color: #bfd8ff;
+  &:hover{
+    background-color: #bfd8ff;
+    background-color: #95befb;
+  }
+}
+
+.order-completed{
+  width: 16%;
+  font-size: 1.2rem;
+  border-radius: 4vh;
+  border: none;
+  color: #333;
+  background-color: #d5e6ff;
+  cursor: pointer;
+  /* box-shadow: 0 0 2px 1px #bfd8ff; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2% 0;
+  transition: all ease-in-out 0.2s;
+  height: 6.2vh;
+  /* background-color: #bfd8ff; */
+  &:hover{
+    background-color: #bfd8ff;
+    /* background-color: #95befb; */
+  }
+}
+
+.single-order-top div{
+  display: flex;
+  color: #444;
+  flex-direction: column;
+  align-items: center;
+}
+
+.order-files{
+  /* background-color: purple; */
+  width: 100%;
+  display: flex;
+  padding: 1%;
+  gap: 4vh;
+  flex-direction: column;
+  align-items: center;
+}
+
+.shop-order{
+  box-shadow: 0 0 1.5px 0.5px #bfd8ff;
+  background-color: #f6faff;
+  border-radius: 3px;
+  width: 90%;
+  justify-content: space-evenly;
+  align-items: center;
+  display: flex;
+  height: 385px;
+  font-size: 1.1rem;
+  /* background-color: saddlebrown; */
+}
+
+.shop-order-number{
+  width: 6%;
+  display: flex;
+  /* border-right: 0.5px solid #bfd8ff; */
+  justify-content: center;
+  font-size: 1rem;
+  align-items: center;
+  /* background-color: seashell; */
+}
+
+.shop-details-container{
+  display: flex;
+  width: 80%;
+  /* background-color: red; */
+}
+
+.shop-order-right h3::after{
+  content: ":  ";
+}
+
+.shop-order-right p{
+  color:#666;
+  font-size: 1.2rem;
+}
+
+.shop-order-right h3{
+  padding-right: 5px;
+  font-size: 1.3rem;
+  font-weight: 400;
+  color: #333 !important;
+}
+
+.download-button{
+  background-color: #ecf1ff;
+  background-color: #d5e6ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6vw;
+  border: none;
+  height: 10.8%;
+  width: 11vw;
+  border-radius: 30px;
+  padding: 0 2%;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all ease-in-out 0.3s;
+  &:hover{
+    background-color: #bfd8ff;
+    background-color: #bfd8ff;
+  }
+}
+
+.shop-order-right{
+  padding: 1%;
+  padding-left: 3%;
+  font-size: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2vh;
+}
+
+.shop-order-right div{
+  display: flex;
+  align-items: center;
 }
 
 /* orders  */
@@ -1261,10 +1469,6 @@ html::-webkit-scrollbar-thumb:hover {
 .order-main{
   padding: 1% 3%;
   /* background-color: blue; */
-}
-
-.active-orders-section{
-  /* background-color: lightcoral; */
 }
 
 .order-list{

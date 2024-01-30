@@ -17,6 +17,8 @@ router.post('/download',printController.download)
 router.post('/single-download',printController.singleDownload)
 
 router.post('/order-completed',printController.orderCompleted)
+
+router.post('/get-pdf',printController.getPdf)
 // router.post('/receive',fileController.receive);
 
 // router.post('/download',fileController.download);

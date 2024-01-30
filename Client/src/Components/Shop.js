@@ -120,18 +120,17 @@ function Shop() {
 
   return (
     <>
-    {order?
+    {order &&
     <section className="order-selected">
       <ShopOrder order={order} setOrder={setOrder}/>
-    </section>
-    :
+    </section>}
         <main className="shop-main">
           <section className="priority-orders">
             <h2 className="send-heading">Priority Orders</h2>
             <div className="shop-orders-sub">
             {selectedShop.currentPriorityOrders.length?selectedShop.currentPriorityOrders.map((order,index)=>(
               <div onClick={()=>{setOrder(order)}} className="individual-orders" key={index}>
-                {console.log(order)}
+                {/* {console.log(order)} */}
                 <p>{order._id}</p>
                 {order.createdAt.split('T')[0]}
                 {order.tokenNumber}
@@ -151,7 +150,7 @@ function Shop() {
                 </div>
               {selectedShop.currentOrders?selectedShop.currentOrders.map((order,index)=>(
                 <div onClick={()=>{setOrder(order)}} className="individual-order shop-individual-order" key={index}>
-                  {console.log(order)}
+                  {/* {console.log(order)} */}
                   <div className="individual-order-div">
                     <p>{order.tokenNumber}</p>
                   </div>
@@ -162,7 +161,7 @@ function Shop() {
                     <p> {getISTTime(order.createdAt)} {order.createdAt.split('T')[0]}</p>
                   </div>
                   <div className="individual-order-div">
-                    <p>{order.totalPrice}</p>
+                    <p>₹{order.totalPrice}</p>
                   </div>
 
                 </div>
@@ -170,8 +169,6 @@ function Shop() {
               </div>
           </section>
         </main>
-
-    }
   </>
   );
 }

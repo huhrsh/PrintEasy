@@ -402,13 +402,19 @@ function PrintFile() {
                   </div>
                 </div>
                 <div className="store-search-list">
-                  <div className="shop-list store-search-heading">
-                    <div className="shop-selection"></div>
-                    <div className="shop-id">Shop ID</div>
-                    <div className="shop-address">Shop Name, Address</div>
-                    <div className="shop-prints">Availibility/Price</div>
-                    <div className="shop-timing">Timings</div>
-                  </div>
+                {shopList && 
+                    <>
+                    {shopList.length>0 &&
+                    <div className="shop-list store-search-heading">
+                      <div className="shop-selection"></div>
+                      <div className="shop-id">Shop ID</div>
+                      <div className="shop-address">Shop Name, Address</div>
+                      <div className="shop-prints">Availibility/Price</div>
+                      <div className="shop-timing">Timings</div>
+                    </div>
+                    }
+                    </>
+                  }
                     {shopList && shopList.map((shop,index)=>(
                       // <div key={index} className="shop-list" onClick={()=>{selectedShop & (shop._id===selectedShop._id)?setSelectedShop():setSelectedShop(shop)}}>
                       <div key={index} className="shop-list" onClick={()=>{shop===selectedShop?setSelectedShop():setSelectedShop(shop)}}>

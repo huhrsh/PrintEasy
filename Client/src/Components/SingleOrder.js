@@ -41,7 +41,8 @@
         loading?<PulseLoader color="#333" className="loader"/>:
         <>
         {/* {console.log(order)} */}
-            { order && order.active?<main className="single-order-main">
+            { order && order.active?
+            <main className="single-order-main">
             <img className="cross-button" onClick={()=>{cross()}} src={crossSign}/> 
             {!order.priority?<>
                 <div>

@@ -185,3 +185,28 @@ module.exports.orderCompleted=(req,res)=>{
         return res.json({message:"Error occured in completing order"});
     })
 }
+
+module.exports.getPdf = (req, res) => {
+    const filename = req.body.file.filename;
+    const filePath = path.join(__dirname, `../uploads/prints/${filename}`);
+
+    if (fs.existsSync(filePath)) {
+        // console.log("File mil gayi, ", filePath);
+        // res.setHeader('Content-Type', 'application/pdf');
+        const stream = fs.createReadStream(filePath);
+
+        stream.on('error', (error) => {
+            console.error('Error streaming file:', error);
+            res.status(500).send('Internal Server Error');
+        });
+
+        stream.on('end', () => {
+            // End the response after streaming is complete
+            res.end();
+        });
+
+        stream.pipe(res);
+    } else {
+        res.status(404).send('File not found');
+    }
+};
