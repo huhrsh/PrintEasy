@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Camera Access</title>
+</head>
+<body>
+    <video id="videoElement" autoplay></video>
+    <script>// Get video element
+var video = document.getElementById("videoElement");
+
+// Check if the browser supports getUserMedia
+if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+    // Access the camera
+    navigator.mediaDevices.getUserMedia({ video: true })
+        .then(function(stream) {
+            // Set the video source to the camera stream
+            video.srcObject = stream;
+        })
+        .catch(function(error) {
+            console.error("Error accessing camera:", error);
+        });
+} else {
+    console.error("getUserMedia not supported in this browser.");
+}
+</script>
+</body>
+</html>
