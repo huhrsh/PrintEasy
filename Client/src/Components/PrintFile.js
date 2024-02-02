@@ -26,7 +26,7 @@ const PdfViewer = ({index, pdfFile , fileData, setFileData,selectedShop,setTotal
   
     return (
       <div className="pdf-div">
-        <Document className='pdf-doc'
+        <Document className={temp[index].pageColor=='Color'?"pdf-doc" :"pdf-doc bnw-page" }
           file={pdfFile}
           onLoadSuccess={onDocumentLoadSuccess}
         >
@@ -82,7 +82,7 @@ function PrintFile() {
         for (let i = 0; i < fileData.length; i++) {
             console.log("ooooooooooo",fileData[i]);
             formData.append(`file`, fileData[i]);
-            fileInfo.push({pages: fileData[i].pages, pageRange: fileData[i].pageRange, pageColor: fileData[i].pageColor, pageMethod: fileData[i].pageMethod, note: fileData[i].note, price: fileData[i].price,numberOfCopies:fileData[i].numberOfCopies})
+            fileInfo.push({pages: fileData[i].pages, pageRange: fileData[i].pageRange, pageColor: fileData[i].pageColor, pageMethod: fileData[i].pageMethod, note: fileData[i].note, price: fileData[i].price*fileData[i].numberOfCopies,numberOfCopies:fileData[i].numberOfCopies})
           }
           formData.append('shop',selectedShop._id);
           formData.append('user',user._id)
@@ -111,20 +111,29 @@ function PrintFile() {
         // setState("done")
     }
 
-    function handleDrop(e){
-        e.preventDefault();
-        console.log(e.dataTransfer.files);
-        setFileData(e.dataTransfer.files);
-        setState("preview");
-    }
+    function handleDrop(e) {
+      e.preventDefault();
+      const droppedFiles = e.dataTransfer.files;
+      const filesArray = Array.from(droppedFiles).filter((file) => file.type === 'application/pdf');
+      if (filesArray.length !== droppedFiles.length) {
+          toast.warn("We accept only pdf files");
+      }
+      setFileData(filesArray);
+      console.log(filesArray);
+      setState("preview");
+  }
 
-    function handleChoose(e){
-        // console.log(e);
-        const files=document.getElementsByClassName('choose-file')[0];
-        setFileData(files.files);
-        console.log(files.files);
-        setState("preview")
-    }
+    function handleChoose(e) {
+      // console.log(e);
+      const files = document.getElementsByClassName('choose-file')[0].files;
+      const filesArray = Array.from(files).filter((file) => file.type === 'application/pdf');
+      if (filesArray.length !== files.length) {
+          toast.warn("We accept only pdf files");
+      }
+      setFileData(filesArray);
+      console.log(filesArray);
+      setState("preview");
+  }
 
     useEffect(() => {
         const len = fileData ? Object.values(fileData).length : 0;
@@ -229,6 +238,14 @@ function PrintFile() {
             console.error('Error during shop search:', error);
         }
     }
+
+    function convertTimeFormat(inputTime) {
+      const [hours, minutes] = inputTime.split(':').map(Number);
+      let convertedHours = hours % 12 || 12;
+      const period = hours < 12 ? 'AM' : 'PM';
+      const resultTime = `${convertedHours}:${minutes<10?'0'+minutes:minutes} ${period}`;
+      return resultTime;
+  }
 
     useEffect(()=>{
       console.log('PrintFile component rendered');
@@ -335,17 +352,22 @@ function PrintFile() {
           }
         } else {
           try{
-            let tempPages=tempFile.pagesToBePrinted.split(',');
-            tempPages.forEach(item=>{
-              let tempItem=item.split('-');
-              console.log(tempItem);
-              // console.log(tempItem.trim());
-
-            })
-            // console.log(tempPages);
+            // let tempPages=tempFile.pagesToBePrinted.split(',');
+            // tempPages.forEach(item=>{
+            //   let tempItem=item.split('-');
+            //   tempItem.map((item)=>item.trim())
+            //   console.log(tempItem);
+            // })
+            let tempPages=handlePageRange(tempFile.pagesToBePrinted);
+            if (tempFile.pageColor === 'Color') {
+              price = tempPages * selectedShop.color;
+            } else {
+              price = tempPages * selectedShop.bnw;
+            }
           }
           catch(err){
-            toast("Your Input seems invalid")
+            console.log(err)
+            // toast("Your Input seems invalid")
           }
         }
     
@@ -355,6 +377,25 @@ function PrintFile() {
       calculateTotalPrice();
     }
 
+    function handlePageRange(rangeInput) {
+      const pageRanges = rangeInput.split(","); // Split multiple ranges
+      let selectedPages = 0;
+    
+      pageRanges.forEach(range => {
+        if (range.indexOf("-") === -1) {
+          selectedPages++; 
+        } else {
+          const [start, end] = range.trim().split("-").map(Number);
+          if (start > end) {
+            console.error("Invalid page range: start page cannot be greater than end page.");
+            return;
+          }
+          selectedPages += end - start + 1; 
+        }
+      });
+    
+      return selectedPages;
+    }
     function calculateTotalPrice(){
       setTotalPrice(()=>{
           let tempPrice=0;
@@ -404,20 +445,27 @@ function PrintFile() {
                 <div className="store-search-list">
                 {shopList && 
                     <>
-                    {shopList.length>0 &&
+                    {shopList.length>0 &&<>
+                    <div className="shop-alert-div">
+                      <p className="shop-alert">Shops highlighted in <div className="red-color-div"></div> color have stopped accepting orders for the day.</p>
+                      <p className="shop-alert-2"> If you choose one of these shops, your files will be printed on the next business day.</p>
+                    </div>
                     <div className="shop-list store-search-heading">
                       <div className="shop-selection"></div>
                       <div className="shop-id">Shop ID</div>
-                      <div className="shop-address">Shop Name, Address</div>
+                      <div className="shop-address">Shop Name and Address</div>
                       <div className="shop-prints">Availibility/Price</div>
                       <div className="shop-timing">Timings</div>
                     </div>
+                    </>
                     }
                     </>
                   }
                     {shopList && shopList.map((shop,index)=>(
-                      // <div key={index} className="shop-list" onClick={()=>{selectedShop & (shop._id===selectedShop._id)?setSelectedShop():setSelectedShop(shop)}}>
-                      <div key={index} className="shop-list" onClick={()=>{shop===selectedShop?setSelectedShop():setSelectedShop(shop)}}>
+                      <>
+                      {/* <div key={index} className="shop-list" onClick={()=>{selectedShop & (shop._id===selectedShop._id)?setSelectedShop():setSelectedShop(shop)}}> */}
+                      {/* {shop.on?"":"This shop is not accepting orders anymore, if you select this shop, you will receive your items on the next working day"} */}
+                      <div key={index} className={`shop-list ${!shop.on?"shop-list-red":""}`} onClick={()=>{shop===selectedShop?setSelectedShop():setSelectedShop(shop)}}>
                       {/* // <div key={index} className="shop-list" onClick={()=>{console.log(shop)}}> */}
                           {/* {console.log(shop._id)} */}
                           <div className="shop-selection">
@@ -444,10 +492,11 @@ function PrintFile() {
                             {/* <h2 className="shop-timing-heading">Timings</h2> */}
                             {/* <p>Opening Time: {shop.timings.open}</p> */}
                             {/* <p>Closeing Time: {shop.timings.close}</p> */}
-                            <p>{shop.timings.open} - {shop.timings.close}</p>
+                            <p>{convertTimeFormat(shop.timings.open)} - {convertTimeFormat(shop.timings.close)}</p>
                             <p>{shop.address[3]}</p>
                           </div>
                         </div>
+                        </>
                     ))}
                 </div>
                 {selectedShop?<button onClick={()=>{setState('upload')}} className="animate__animated animate__fadeInUp shop-select-button">Continue</button>:<></>}
@@ -456,6 +505,7 @@ function PrintFile() {
             {
             state==="upload"?<form className="send-form" encType="multipart/form-data">
                 {console.log("Upload")}
+                <p className="pdf-warning"><img src="https://cdn-icons-png.flaticon.com/128/2797/2797387.png"/>We are accepting only pdfs for now!</p>
                 <p className="drop-p" >Drag and drop your files in the box</p>
                 <div className="drop-area" onDrop={(e)=>{handleDrop(e)}} onDragOver={(e)=>{e.preventDefault()}}>
                     <div className="drop-cover">
@@ -483,8 +533,8 @@ function PrintFile() {
                                 <form className="print-preview-container" key={index}>
                                 {/* {tempArr=item} */}
                                     {item.type==='application/pdf' && <PdfViewer selectedShop={selectedShop} index={index} pdfFile={item} fileData={fileData} setFileData={setFileData} setTotalPrice={setTotalPrice} className="item-preview-image" />}
-                                    {item.type.startsWith('image/')&&<img className="item-preview-image" src={URL.createObjectURL(item)} alt="item"/>}
-                                    {(item.type!=='application/pdf' && item.type.startsWith('image')===false )&&<img className="item-preview-image-default" src='https://cdn-icons-png.flaticon.com/128/2541/2541988.png' alt="item"/>}
+                                    {/* {item.type.startsWith('image/')&&<img className="item-preview-image" src={URL.createObjectURL(item)} alt="item"/>} */}
+                                    {/* {(item.type!=='application/pdf' && item.type.startsWith('image')===false )&&<img className="item-preview-image-default" src='https://cdn-icons-png.flaticon.com/128/2541/2541988.png' alt="item"/>} */}
                                     <div className="print-details">
                                       <div className="print-details-div">
                                         <h3 className="print-page-heading">File name:</h3>

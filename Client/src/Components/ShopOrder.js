@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react"
-import { Document, Page, pdfjs } from 'react-pdf';
 import { toast } from "react-toastify";
 import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
 import backSign from "../Assets/back.png"
+import { Document, Page, pdfjs } from 'react-pdf';
 pdfjs.GlobalWorkerOptions.workerSrc = `https://unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`;
 
 const PdfViewer = ({ file }) => {
@@ -204,7 +204,10 @@ function ShopOrder({order, setOrder}){
                 )
             })}
         </div>
-            <div onClick={()=>{orderCompleted()}} className="order-completed">Mark as completed</div>
+        {
+          order.active &&
+          <div onClick={()=>{orderCompleted()}} className="order-completed">Mark as completed</div>
+        }
         </main>
         </>
     )

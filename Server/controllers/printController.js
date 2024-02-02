@@ -141,9 +141,9 @@ module.exports.singleDownload=async (req, res) => {
 }
 
 module.exports.orderCompleted=(req,res)=>{
-    Print.findByIdAndUpdate(req.body.print, {active:false})
+    Print.findByIdAndUpdate(req.body.print, {active:false}, { new: true })
     .then((print)=>{
-        console.log(print);
+        // console.log(print);
         // print.save()
         User.findById(print.user.toString())
         .then((userFound)=>{

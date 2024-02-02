@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import {Link} from 'react-router-dom'
 import { useSelector } from "react-redux";
+import ReactDOM from "react-dom";
+import QRCode from "react-qr-code";
 
 function SendFile() {
     // upload preview done 
@@ -146,11 +148,14 @@ function SendFile() {
                                 <img onClick={()=>{copyToken(compressedId)}}  className="copy-image" src="https://cdn-icons-png.flaticon.com/128/126/126498.png"/>
                             </div>
                         </div>
+                        <div className="done-div qr-div">
+                            <h2 className="send-heading">Your file QR code is:</h2>
+                            <QRCode className="qr" value={"http://localhost:3000/receive?token="+compressedId} />
+                        </div>
                         <p className="caution-message">
                             <img src='https://cdn-icons-png.flaticon.com/128/1672/1672451.png' alt="error" />
                             Files will be deleted in an hour
                         </p>
-
                     </main>
                 </>:<></>
             }

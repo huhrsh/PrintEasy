@@ -5,12 +5,70 @@
  import { PulseLoader } from "react-spinners";
 //  import crossSign from "../Assets/remove.png"
  import crossSign from "../Assets/cross.png"
+ import backSign from "../Assets/back.png"
+ import { Document, Page, pdfjs } from 'react-pdf';
+ pdfjs.GlobalWorkerOptions.workerSrc = `https://unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`;
+ 
+ const PdfViewer = ({ file }) => {
+   const [numPages, setNumPages] = useState(null);
+   const [pageNumber, setPageNumber] = useState(1);
+   const [pdfData, setPdfData] = useState(null);
+   // console.log(file)
+   useEffect(() => {
+     const fetchPdfData = async () => {
+       try {
+         const response = await fetch(`/print/get-pdf`,{
+           method:"POST",
+           credentials:"omit",
+           headers:{
+             'Content-Type': 'application/json',
+             // 'Content-Type': 'application/pdf',
+           },
+           body:JSON.stringify({file})
+         });
+         const data = await response.blob();
+         // const data = await response.json();
+         setPdfData(data);
+         console.log(data)
+       } catch (error) {
+         console.error('Error fetching PDF:', error);
+       }
+     };
+ 
+     fetchPdfData();
+   }, []);
+ 
+   const onDocumentLoadSuccess = ({ numPages }) => {
+     setNumPages(numPages);
+   };
+ 
+   return (
+     <div className="pdf-div">
+       <Document className='pdf-doc'
+         file={pdfData}
+         onLoadSuccess={onDocumentLoadSuccess}
+       >
+         <Page className='pdf-page'  height={350} renderTextLayer={false} pageNumber={pageNumber} devicePixelRatio={7} />
+       </Document>
+       <div className="document-pages">
+         <div className="page-minus" onClick={()=>{pageNumber>1?setPageNumber(pageNumber-1):setPageNumber(pageNumber)}}><img src='https://cdn-icons-png.flaticon.com/128/56/56889.png'/></div>
+         <p>
+           {pageNumber} / {numPages}
+         </p>
+         <div className="page-plus" onClick={()=>{pageNumber<numPages?setPageNumber(pageNumber+1):setPageNumber(pageNumber)}}><img src='https://cdn-icons-png.flaticon.com/128/3524/3524388.png'/></div>
+       </div>
+     </div>
+   );
+ };
+ 
+ 
 
  function SingleOrder({user,order,cross,getPrintDetails,reRender, setReRender}){
     const navigate=useNavigate();
     const [loading,setLoading]=useState(false)
     // let user=useSelector((state)=>state.user.user);
-    
+    let fileInfo=order.fileInfo;
+
     useEffect(()=>{
         if(reRender){
             getPrintDetails(order._id)
@@ -30,45 +88,182 @@
         console.log("Shit")
     },[])
 
+    let intervalId;
+
+    function getISTTime(utcTimestamp) {
+      const date = new Date(utcTimestamp);
+      date.setUTCHours(date.getUTCHours() ); 
+      date.setUTCMinutes(date.getUTCMinutes() ); 
+      
+      const hours = date.getHours();
+      const minutes = date.getMinutes();
+      const ampm = hours >= 12 ? 'PM' : 'AM';
+      const formattedHours = hours % 12 || 12; 
+    
+      const formattedTime = `${formattedHours}:${minutes < 10 ? '0' : ''}${minutes} ${ampm}`;
+    
+      return formattedTime;
+    }
+
     useEffect(() => {
-        const intervalId = setInterval(() => {
+      if(!order.active){
+        clearInterval(intervalId)
+      }
+        intervalId = setInterval(() => {
             getPrintDetails(order._id);
         }, 30000);
         return () => clearInterval(intervalId);
     }, [order._id, getPrintDetails]);
 
-    return(
-        loading?<PulseLoader color="#333" className="loader"/>:
-        <>
+  return (
+    <>
+      <main className="shop-order-main user-order-main">
+        <img className="back-button" onClick={()=>{cross()}} src={backSign}/>
         {/* {console.log(order)} */}
-            { order && order.active?
-            <main className="single-order-main">
-            <img className="cross-button" onClick={()=>{cross()}} src={crossSign}/> 
-            {!order.priority?<>
+        {order && order.active ? (
+          <div className="single-order-top-div">
+            {!order.priority ? (
+              <>
+<section className="passive-order">
+              <div>
+                <p>Order no.</p> 
+                <p>{order.tokenNumber}</p>
+              </div>
+              <div>
+                <p>Order no. being processed</p> 
+                <p>{order.shop.currentToken}</p>
+              </div>
+              <div>
+                <p>Ordered at</p> 
+                <p> {getISTTime(order.createdAt)} &nbsp; {order.createdAt.split('T')[0]}</p>
+              </div>
+              <div>
+                <p>Files sent</p> 
+                <p> {order.files.length}</p>
+              </div>
+              {/* <div>
+                <p>Completed At</p> 
+                <p> {getISTTime(order.updatedAt)} &nbsp; {order.updatedAt.split('T')[0]}</p>
+              </div> */}
+              <div>
+                <p>Amount paid</p> 
+                <p> ₹{order.totalPrice}</p>
+              </div>
+        </section>
+              </>
+            ) : (
+              <section className="passive-order">
+              <div>
+                <p>Order number</p> 
+                <p>none (priority print)</p>
+              </div>
+              <div>
+                <p>Ordered at</p> 
+                <p> {getISTTime(order.createdAt)} &nbsp; {order.createdAt.split('T')[0]}</p>
+              </div>
+              <div>
+                <p>Files sent</p> 
+                <p> {order.files.length}</p>
+              </div>
+              {/* <div>
+                <p>Completed At</p> 
+                <p> {getISTTime(order.updatedAt)} &nbsp; {order.updatedAt.split('T')[0]}</p>
+              </div> */}
+              <div>
+                <p>Amount paid</p> 
+                <p> ₹{order.totalPrice+10}</p>
+              </div>
+        </section>
+            )}
+          </div>
+        ) : (
+          <section className="passive-order">
                 <div>
-                    Your order number is: {order.tokenNumber}
+                  <p>Order number</p> 
+                  <p> {order.tokenNumber}</p>
                 </div>
                 <div>
-                    The shop is currently processing order number : {order.shop.currentToken}
+                  <p>Ordered at</p> 
+                  <p> {getISTTime(order.createdAt)} &nbsp; {order.createdAt.split('T')[0]}</p>
                 </div>
                 <div>
-                    You will be notified once your order is ready
+                  <p>Completed at</p> 
+                  <p> {getISTTime(order.updatedAt)} &nbsp; {order.updatedAt.split('T')[0]}</p>
                 </div>
-                <div className="order-shop-details">
+                <div>
+                <p>Files sent</p> 
+                <p> {order.files.length}</p>
+              </div>
+                <div>
+                  <p>Amount paid</p> 
+                  <p> ₹{order.totalPrice}</p>
+                </div>
+          </section>
+        )}
+        <section className="single-order-bottom">
+          <div className="shop-details">
+            <h2 className="send-heading">Shop details</h2>
+              {console.log(order.shop)}
+            <div className="single-order-shop-details">
+              <p>{order.shop.shopName}</p>
+              {order.shop.address &&
+              <>
+                <p>{order.shop.address[0]}</p>
+                <p>{order.shop.address[1]}</p>
+              </>
+              }
+            </div>
+          </div>
+          <h2 className="send-heading">Files sent</h2>
+          <section className="single-order-details">
+            <div className="user-files">
+              {order.files.map((file,index)=>{
+                  return(
+                      <div className="user-single-order">
+                        {/* <div className="shop-order-number">{index+1}</div> */}
+                          <div className="shop-details-container">
+                            <PdfViewer file={file}/>
+                            <div className="shop-order-right">
+                            <div>
+                                <h3>File name</h3>
+                                <p>{file.originalname}</p>
+                            </div>
+                            <div>
+                                <h3>Pages to be printed</h3>
+                                <p>{fileInfo[index].pageRange}</p>
+                            </div>
+                            <div>
+                                <h3>Color</h3>
+                                <p>{fileInfo[index].pageColor}</p>
+                            </div>
+                            <div>
+                                <h3>Method</h3>
+                                <p>{fileInfo[index].pageMethod}</p>
+                            </div>
+                            <div>
+                                <h3>Number of copies</h3>
+                                <p>{fileInfo[index].numberOfCopies}</p>
+                            </div>
+                            <div>
+                                <h3>Amount received for this file</h3>
+                                <p>₹{fileInfo[index].price}</p>
+                            </div>
+                            <div>
+                                <h3>Note</h3>
+                                <p>{fileInfo[index].note==""?"none":fileInfo[index].note}</p>
+                            </div>
+                          </div>
+                      </div>
+                      {/* <button className="download-button" onClick={()=>{singleDownload(file)}}>Download</button> */}
+                    </div>
+                  )
+              })}
+          </div>
+          </section>
+          </section>
+          </main>
+    </>
+  );
+}
 
-                </div>            
-            </>:<>
-            Eww
-            </>
-            }
-            Page keeps refreshing every 30 seconds
-            </main>:
-            <>
-                Passive
-            </>
-            }
-        </>
-    )
- }
-
- export {SingleOrder}
+export { SingleOrder };

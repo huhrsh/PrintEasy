@@ -70,6 +70,10 @@ const shopSchema=new mongoose.Schema({
     totalOrders:{
         type:Array,
         default:[]
+    },
+    on:{
+        type:Boolean, 
+        default:false
     }
 },{
     timestamps:true

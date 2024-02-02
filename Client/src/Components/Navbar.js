@@ -240,11 +240,21 @@ function Navbar(){
                 {!user & !shop?
                 <Link to='/sign-in' className="user">
                     <img src="https://cdn-icons-png.flaticon.com/128/456/456212.png" alt="user"/> Sign In
-                </Link>:<>
+                </Link>:
+                user?<>
                 <div className="signed-user-nav">
                         <Link to='/orders' className="order">
                             My Orders
                         </Link>
+                        <button onClick={()=>{SignOut()}} className="user">
+                            Sign Out
+                        </button>
+                    </div>
+                </>:<>
+                <div className="signed-user-nav">
+                        {/* <Link to='/orders' className="order">
+                            My Orders
+                        </Link> */}
                         <button onClick={()=>{SignOut()}} className="user">
                             Sign Out
                         </button>
@@ -271,7 +281,8 @@ function Navbar(){
                     </div>
                 } */}
             </header>
-            {shop?<Shop/>:<Outlet/>}
+            {!shop?<Outlet/>:<></>}
+            {shop && <Shop/>}
             {/* {!shop && <Outlet/>} */}
         </>
     

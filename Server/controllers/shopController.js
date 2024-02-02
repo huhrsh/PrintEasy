@@ -128,3 +128,46 @@ module.exports.fetchShop=(req,res)=>{
         res.json({statusText:"Error in fetching shop"})
     })
 }
+
+module.exports.changeStatus=(req,res)=>{
+    console.log(req.body);
+    let shopId=req.body.id
+    Shop.findById(shopId)
+    .then((shop)=>{
+        console.log("Shop status changed")
+        if(shop.on){
+            shop.tokenNumber=0;
+        }
+        else{
+            shop.currentToken=0;
+        }
+        shop.on=!shop.on;
+        shop.save();
+        return res.status(400)
+    })
+    .catch((err)=>{
+        console.log("Error in changing shop status",err)
+        return res.status(500)
+    })
+}
+
+module.exports.changePrintStatus=(req,res)=>{
+    // console.log(req.body);
+    let shopId=req.body.id
+    Shop.findById(shopId)
+    .then((shop)=>{
+        console.log("Shop status changed")
+        if(req.body.type=="color"){
+            shop.colorPrints=!req.body.colorPrints
+        }
+        else if(req.body.type=='black'){
+            shop.blackPrints=!req.body.blackPrints
+        }
+        shop.save();
+        return res.send("Success")
+    })
+    .catch((err)=>{
+        console.log("Error in changing shop status",err)
+        return res.status(500).send("Eh")
+    })
+}

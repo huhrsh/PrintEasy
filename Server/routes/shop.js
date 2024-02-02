@@ -18,10 +18,13 @@ router.post('/sign-in', passport.authenticate(
 router.post('/get-shop-data',passport.checkAuthentication,shopController.getShopData)
 
 router.post('/sign-out',shopController.signOut)
-
 // router.post('/find-shop',passport.checkAuthentication,shopController.findShop)
 router.post('/find-shop',shopController.findShop)
 
 router.post('/fetch-shop',shopController.fetchShop)
+
+router.post('/change-status',shopController.changeStatus)
+
+router.post('/change-print-status',shopController.changePrintStatus)
 
 module.exports=router;

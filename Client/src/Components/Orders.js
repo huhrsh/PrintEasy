@@ -191,7 +191,7 @@ function Orders(){
                         <h3 className="previous-order-div">Files sent</h3>
                         {/* <h3 className="previous-order-div">Priority print</h3> */}
                         <h3 className="previous-order-div individual-date">Ordered at</h3>
-                        <h3 className="previous-order-div individual-date">Received at</h3>
+                        <h3 className="previous-order-div individual-date">Completed at</h3>
                         <h3 className="previous-order-div">Amount paid</h3>
                     </div>
                     {user.filePrinted.slice().reverse().map((item,index)=>{
