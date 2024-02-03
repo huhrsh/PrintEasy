@@ -34,7 +34,7 @@ const storage = multer.diskStorage({
   fileSchema.statics.cleanupOldFiles = async function () {
     const twoHoursAgo = new Date(Date.now() - 2 * 60 * 60 * 1000);
     const files = await this.find({ 'createdAt': { $lt: twoHoursAgo } });
-  
+
     files.forEach(async (file) => {
     // console.log("File is: ")
       file.files.forEach(async (filename) => {
@@ -51,7 +51,6 @@ const storage = multer.diskStorage({
   setInterval(async () => {
     await mongoose.model('File').cleanupOldFiles();
   },  120*60*1000);  
-  
 
 const File=mongoose.model('File',fileSchema);
 module.exports=File;

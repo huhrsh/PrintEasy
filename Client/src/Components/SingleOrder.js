@@ -205,7 +205,7 @@
             <h2 className="send-heading">Shop details</h2>
               {console.log(order.shop)}
             <div className="single-order-shop-details">
-              <div className="single-order-shop-details-left">
+            <div className="single-order-shop-details-left">
                 <p>{order.shop.shopName}</p>
                 {order.shop.address &&
                 <>

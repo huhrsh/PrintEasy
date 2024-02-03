@@ -70,8 +70,7 @@ function SignIn(){
             toast.warn("Password does not match")
           }
         }
-      } 
-
+      }
     useEffect(()=>{
       // console.log(user)
       if(user){
