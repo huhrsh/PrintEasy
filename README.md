@@ -1,6 +1,9 @@
+
 # PrintEasy
 
-*Printing made online and easy*
+Printing made online and easy
+
+![App Screenshot](https://res.cloudinary.com/dddnk0dcn/image/upload/v1706857955/Screenshot_329_rjqyjo.png?text=Home+Page)
 
 PrintEasy streamlines the process of printing orders effortlessly by putting the ability to transfer files to the shop right at your fingertips.
 
@@ -9,52 +12,23 @@ PrintEasy also offers the capability to share files between systems (upto 50MB),
 
 Clone the project
 
-bash
+```bash
   git clone https://github.com/huhrsh/PrintEasy.git
+```
 
-
-Go to the "Client" directory
-
-bash
-  cd Cleint
-
+In Client and Server directories, run the following commands
 
 Install dependencies
 
-bash
+```bash
   npm install
-
+```
 
 Start the server
 
-bash
+```bash
   npm start
-
-
-Go to the root directory
-
-bash
-  cd ../
-
-
-Go to the "Server" directory
-
-bash
-  cd Server
-
-
-Install dependencies
-
-bash
-  npm install
-
-
-Start the server
-
-bash
-  npm start
-
-
+```
 
 ## Features
 
@@ -66,37 +40,44 @@ bash
 
 ## Technology used
 
-*Client:* React, Redux, CSS
+**Client:** React, Redux, CSS
 
-*Server:* MongoDB, NodeJS, ExpressJS, Mongoose
+**Server:** MongoDB, NodeJS, ExpressJS, Mongoose
 
-*Push Notification:* react-toastify
+**Push Notification:** react-toastify
 
-*Media:* MulterJS
+**Media:** MulterJS
 
-*PDF Preview:* react-pdf
+**PDF Preview:** react-pdf
 
-*Authentication:* PassportJS
+**Authentication:** PassportJS
 
-
+**QR Code:** react-qr-code
 
 
 
 
 ## Demo
 
-[![Watch the video](https://res.cloudinary.com/dddnk0dcn/image/upload/v1706857955/Screenshot_329_rjqyjo.png)](https://youtu.be/vt5fpE0bzSY)
+[![Watch the video](https://res.cloudinary.com/dddnk0dcn/image/upload/v1706857955/Screenshot_329_rjqyjo.png)](https://www.loom.com/share/f10c5fb0f50a49e6b9066bdbc1e44c91?sid=6110a50b-7574-4589-be5e-6379a96ff603)
+
+
+## Lessons Learned
+
+- Working with API's extensively facilitating client server connectivity.
+
+- Using a new library for generating PDF previews.
 
 
 ## Screenshots
 
 
-*Home page of the web application*
+**Home page of the web application**
 
 ![App Screenshot](https://res.cloudinary.com/dddnk0dcn/image/upload/v1706857955/Screenshot_329_rjqyjo.png?text=Home+Page)
 
 
-*File sending pages of the web application*
+**File sending pages of the web application**
 
 (upload section)
 ![App Screenshot](https://res.cloudinary.com/dddnk0dcn/image/upload/v1706858145/Screenshot_2024-02-02_124456_d7jqq5.png?text=Send+Page)
@@ -108,12 +89,12 @@ bash
 ![App Screenshot](https://res.cloudinary.com/dddnk0dcn/image/upload/v1706858278/Screenshot_330_wvclsi.png?text=Send+Page+End)
 
 
-*File receiving page of the web application*
+**File receiving page of the web application**
 
 ![App Screenshot](https://res.cloudinary.com/dddnk0dcn/image/upload/v1706858600/Screenshot_2024-02-02_125225_h4th8o.png?text=Receive+Page)
 
 
-*Printing page of the web application*
+**Printing page of the web application**
 
 (select shop)
 ![App Screenshot](https://res.cloudinary.com/dddnk0dcn/image/upload/v1706858966/Screenshot_332_jtnz7i.png?text=Print+Select+Page)
@@ -142,7 +123,7 @@ bash
 (My Orders)
 ![App Screenshot](https://res.cloudinary.com/dddnk0dcn/image/upload/v1706858965/Screenshot_334_sm3njm.png?text=My+Orders+Page)
 
-*Shop portal of web application*
+**Shop portal of web application**
 
 (home)
 ![App Screenshot](https://res.cloudinary.com/dddnk0dcn/image/upload/v1706858966/Screenshot_333_clsmcf.png?text=Shop+Home+Page)
@@ -153,9 +134,3 @@ bash
 
 
 
-
-## Lessons Learned
-
-- Working with API's extensively facilitating client server connectivity.
-
-- Using a new library for generating PDF previews.
