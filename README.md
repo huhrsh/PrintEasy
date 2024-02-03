@@ -54,6 +54,8 @@ Start the server
 
 **QR Code:** react-qr-code
 
+**Archive files:** archiver
+
 
 
 
