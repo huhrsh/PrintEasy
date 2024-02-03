@@ -1,6 +1,6 @@
 const mongoose=require('mongoose')
 
-mongoose.connect('mongodb://0.0.0.0/PrintEasy')
+mongoose.connect('mongodb://0.0.0.0/PrintEasy_Production')
 
 const db=mongoose.connection;
 

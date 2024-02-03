@@ -1778,9 +1778,38 @@
 
 .single-order-shop-details{
   /* background-color: #e9f3ff; */
+  display: flex;
+  justify-content: space-between;
   font-size: 1.1rem;
   color: #444;
+  padding: 0 2%;
   padding-left: 2%;
+}
+
+.single-order-shop-details-left{
+  width: 75%;
+  /* background-color: red; */
+}
+
+.single-order-shop-details-right{
+  /* width: 75%; */
+  width: 25%;
+  display: flex;
+  flex-direction: column;
+  gap: 2vh;
+  padding: 0 2%;
+  /* background-color: red; */
+}
+
+.single-order-shop-details-right a{
+  display: flex;
+  align-items: center;
+  gap: 1vw;
+  text-decoration: none;
+}
+
+.single-order-shop-details-right img{
+  width: 20px;
 }
 
 .user-files{

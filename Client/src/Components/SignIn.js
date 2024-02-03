@@ -48,25 +48,27 @@ function SignIn(){
         }
         setEmail("");
         setPassword("");
-        if(data.shop || data.user){
-          console.log(data);
-          if(data.shop){
-            toast.success("Signed in")
-            dispatch(setShop(data.shop));
-          }
-          else if(data.user){
-            toast.success("Signed in")
-            dispatch(setUser(data.user));
-          }
-          // const user=data.user;
-          navigate('/');
-        }
-        else if(data==='Incorrect password'){
-          toast.warn("Password does not match")
-        }
-        else{
+        if(!data){
           console.log(data)
           toast.error("Invalid credentials");
+        }
+        else{
+          if(data.shop || data.user){
+            console.log(data);
+            if(data.shop){
+              toast.success("Signed in")
+              dispatch(setShop(data.shop));
+            }
+            else if(data.user){
+              toast.success("Signed in")
+              dispatch(setUser(data.user));
+            }
+            // const user=data.user;
+            navigate('/');
+          }
+          else if(data==='Incorrect password'){
+            toast.warn("Password does not match")
+          }
         }
       } 
 

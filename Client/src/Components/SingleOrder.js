@@ -205,13 +205,21 @@
             <h2 className="send-heading">Shop details</h2>
               {console.log(order.shop)}
             <div className="single-order-shop-details">
-              <p>{order.shop.shopName}</p>
-              {order.shop.address &&
-              <>
-                <p>{order.shop.address[0]}</p>
-                <p>{order.shop.address[1]}</p>
-              </>
-              }
+              <div className="single-order-shop-details-left">
+                <p>{order.shop.shopName}</p>
+                {order.shop.address &&
+                <>
+                  <p>{order.shop.address[0]}</p>
+                  <p>{order.shop.address[1]}</p>
+                </>
+                }
+              </div>
+              <div className="single-order-shop-details-right">
+                <a href={`tel:${order.shop.phone}`}><img src='https://cdn-icons-png.flaticon.com/128/0/488.png'/>{order.shop.phone}</a>
+                <a href={`mailto:${order.shop.email}`}><img src='https://cdn-icons-png.flaticon.com/128/2099/2099199.png'/> {order.shop.email}</a>
+                {/* <p><img src='https://cdn-icons-png.flaticon.com/128/732/732200.png'/> {order.shop.email}</p> */}
+
+              </div>
             </div>
           </div>
           <h2 className="send-heading">Files sent</h2>
