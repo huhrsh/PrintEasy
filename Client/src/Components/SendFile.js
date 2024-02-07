@@ -143,7 +143,7 @@ function SendFile() {
                         <div className="done-div">    
                             <h2 className="send-heading">Your file link is:</h2>
                             <div className="token-div">
-                                <Link to={`/receive-file?token=${compressedId}`}>https://print-easy.vercel.app/receive?token={compressedId}</Link>
+                                <Link to={`/receive-file?token=${compressedId}`}>https://print-easy.vercel.app/receive-file?token={compressedId}</Link>
                                 
                                 <img onClick={()=>{copyToken(compressedId)}}  className="copy-image" src="https://cdn-icons-png.flaticon.com/128/126/126498.png"/>
                             </div>
