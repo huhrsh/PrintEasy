@@ -19,7 +19,7 @@ function Orders(){
 
     useEffect(() => {
         if (user && user._id) {
-          socket = new WebSocket(`ws://localhost:5000/user/${user._id}`);
+          socket = new WebSocket(`ws://https://print-easy.onrender.com/user/${user._id}`);
     
           socket.addEventListener("open", (event) => {
             console.log("WebSocket connection opened for user:", user._id);
@@ -54,7 +54,7 @@ function Orders(){
 
     const fetchUserData = async () => {
         try {
-            const response = await fetch('http://localhost:5000/users/get-user-data',{
+            const response = await fetch('https://print-easy.onrender.com/users/get-user-data',{
             method:'POST',
             headers: {
             'Content-Type': 'application/json',
@@ -73,7 +73,7 @@ function Orders(){
     };    
 
     async function getPrintDetails(id){
-        const respose=await fetch('http://localhost:5000/print/get-print-info',{
+        const respose=await fetch('https://print-easy.onrender.com/print/get-print-info',{
             method: 'POST',
             headers:{
                 'Content-Type' : 'application/json'
