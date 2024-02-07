@@ -26,7 +26,7 @@ function ReceiveFile(){
             e.preventDefault();
         }
         console.log(token)
-        const response = await fetch('http://localhost:5000/file/receive/',{
+        const response = await fetch('https://print-easy.onrender.com/file/receive/',{
             method:'POST',
             // credentials:'include',
             headers:{
@@ -53,7 +53,7 @@ function ReceiveFile(){
     }
 
     async function downloadFiles(){
-        const response=await fetch('http://localhost:5000/file/download/',{
+        const response=await fetch('https://print-easy.onrender.com/file/download/',{
             method:'POST',
             // credentials:'include',
             headers:{
