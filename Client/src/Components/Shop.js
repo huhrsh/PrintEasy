@@ -18,7 +18,7 @@ function Shop() {
 
   useEffect(() => {
     if (shop && shop._id) {
-      socket = new WebSocket(`ws://print-easy.onrender.com/shop/${shop._id}`);
+      socket = new WebSocket(`wss://print-easy.onrender.com/shop/${shop._id}`);
 
       socket.addEventListener("open", (event) => {
         console.log("WebSocket connection opened for shop:", shop._id);
