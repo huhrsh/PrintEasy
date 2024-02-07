@@ -143,14 +143,14 @@ function SendFile() {
                         <div className="done-div">    
                             <h2 className="send-heading">Your file link is:</h2>
                             <div className="token-div">
-                                <Link to={`/receive-file?token=${compressedId}`}>http://localhost:3000/receive?token={compressedId}</Link>
+                                <Link to={`/receive-file?token=${compressedId}`}>https://print-easy.vercel.app/receive?token={compressedId}</Link>
                                 
                                 <img onClick={()=>{copyToken(compressedId)}}  className="copy-image" src="https://cdn-icons-png.flaticon.com/128/126/126498.png"/>
                             </div>
                         </div>
                         <div className="done-div qr-div">
                             <h2 className="send-heading">Your file QR code is:</h2>
-                            <QRCode className="qr" value={"http://localhost:3000/receive?token="+compressedId} />
+                            <QRCode className="qr" value={"https://print-easy.vercel.app/receive?token="+compressedId} />
                         </div>
                         <p className="caution-message">
                             <img src='https://cdn-icons-png.flaticon.com/128/1672/1672451.png' alt="error" />
