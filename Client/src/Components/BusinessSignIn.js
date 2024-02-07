@@ -25,7 +25,7 @@ function BusinessSignIn(){
         let data;
         // console.log(formData);
         try {
-            const response = await fetch('https://print-easy.vercel.app/shop/sign-in', {
+            const response = await fetch('https://print-easy.onrender.com/shop/sign-in', {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',
