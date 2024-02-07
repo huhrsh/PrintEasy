@@ -18,7 +18,7 @@ function Shop() {
 
   useEffect(() => {
     if (shop && shop._id) {
-      socket = new WebSocket(`ws://localhost:5000/shop/${shop._id}`);
+      socket = new WebSocket(`ws://print-easy.onrender.com/shop/${shop._id}`);
 
       socket.addEventListener("open", (event) => {
         console.log("WebSocket connection opened for shop:", shop._id);
@@ -86,7 +86,7 @@ function Shop() {
   async function fetchShopDetails(shopId) {
     try {
       console.log(shopId);
-      const response = await fetch("http://localhost:5000/shop/fetch-shop", {
+      const response = await fetch("https://print-easy.onrender.com/shop/fetch-shop", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -122,7 +122,7 @@ function Shop() {
   }
 
   async function changeShopStatus(){
-    const response=await fetch('http://localhost:5000/shop/change-status',{
+    const response=await fetch('https://print-easy.onrender.com/shop/change-status',{
       method:'POST',
       headers:{
         'Content-Type' : 'application/json'
@@ -142,7 +142,7 @@ function Shop() {
 
   async function setPrintStatus(object){
     object.id=shop._id;
-    const response=await fetch("http://localhost:5000/shop/change-print-status",{
+    const response=await fetch("https://print-easy.onrender.com/shop/change-print-status",{
     method:"POST",
     headers:{
       "Content-Type":"Application/Json"
