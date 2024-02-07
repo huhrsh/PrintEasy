@@ -150,7 +150,7 @@ function SendFile() {
                         </div>
                         <div className="done-div qr-div">
                             <h2 className="send-heading">Your file QR code is:</h2>
-                            <QRCode className="qr" value={"https://print-easy.vercel.app/receive?token="+compressedId} />
+                            <QRCode className="qr" value={"https://print-easy.vercel.app/receive-file?token="+compressedId} />
                         </div>
                         <p className="caution-message">
                             <img src='https://cdn-icons-png.flaticon.com/128/1672/1672451.png' alt="error" />
