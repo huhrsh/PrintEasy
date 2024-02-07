@@ -26,7 +26,7 @@ function SendFile() {
         //     console.log(key, value);
         //   }
 
-        const response=await fetch('http://localhost:5000/file/send',{
+        const response=await fetch('https://print-easy.onrender.com/file/send',{
             method:'POST',
             // credentials:'include',
             // headers: {
