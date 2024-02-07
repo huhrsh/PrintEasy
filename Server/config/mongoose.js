@@ -1,6 +1,6 @@
 const mongoose=require('mongoose')
 
-mongoose.connect('mongodb://0.0.0.0/PrintEasy_Production')
+mongoose.connect('mongodb+srv://harshj2010:<password>@cluster0.nynygsd.mongodb.net/?retryWrites=true&w=majority')
 
 const db=mongoose.connection;
 
