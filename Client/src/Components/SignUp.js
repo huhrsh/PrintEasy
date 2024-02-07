@@ -34,7 +34,7 @@ function SignUp(){
         }
         // console.log(formData);
         try {
-            const response = await fetch('http://localhost:5000/users/sign-up', {
+            const response = await fetch('https://print-easy.onrender.com/users/sign-up', {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',
