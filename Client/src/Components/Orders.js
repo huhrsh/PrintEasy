@@ -19,7 +19,7 @@ function Orders(){
 
     useEffect(() => {
         if (user && user._id) {
-          socket = new WebSocket(`ws://https://print-easy.onrender.com/user/${user._id}`);
+          socket = new WebSocket(`ws://print-easy.onrender.com/user/${user._id}`);
     
           socket.addEventListener("open", (event) => {
             console.log("WebSocket connection opened for user:", user._id);
