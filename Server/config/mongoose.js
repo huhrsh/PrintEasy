@@ -1,6 +1,6 @@
 const mongoose=require('mongoose')
 
-mongoose.connect('mongodb+srv://harshj2010:<password>@cluster0.nynygsd.mongodb.net/?retryWrites=true&w=majority')
+mongoose.connect('mongodb+srv://harshj2010:W6k2pwIcJ9MdircD@cluster0.nynygsd.mongodb.net/?retryWrites=true&w=majority')
 
 const db=mongoose.connection;
 
