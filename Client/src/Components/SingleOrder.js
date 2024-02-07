@@ -17,7 +17,7 @@
    useEffect(() => {
      const fetchPdfData = async () => {
        try {
-         const response = await fetch(`/print/get-pdf`,{
+         const response = await fetch(`https://print-easy.onrender.com/print/get-pdf`,{
            method:"POST",
            credentials:"omit",
            headers:{
