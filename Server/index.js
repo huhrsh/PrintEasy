@@ -35,7 +35,7 @@ app.use(session({
         maxAge:(1000*60*60*24*31)     
     },
     store:MongoStore.create({
-        mongoUrl:'mongodb://0.0.0.0/PrintEasy',
+        mongoUrl:'mongodb+srv://harshj2010:W6k2pwIcJ9MdircD@cluster0.nynygsd.mongodb.net/?retryWrites=true&w=majority',
         autoRemove:'disabled'
     })
 }))
