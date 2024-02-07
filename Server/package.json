@@ -4,7 +4,7 @@
   "description": "printing made easy",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js",
+    "start": "node index.js --port=5000",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Harsh Jain",
