@@ -91,7 +91,7 @@ function PrintFile() {
           formData.append("fileInfo",JSON.stringify(fileInfo))
           console.log("Form Data is: ",formData)
 
-        const response=await fetch('http://localhost:5000/print/new-print',{
+        const response=await fetch('https://print-easy.onrender.com/print/new-print',{
             method:'POST',
             body:formData,
         })
@@ -218,7 +218,7 @@ function PrintFile() {
 
     async function shopSearch(){
       try {
-        const response = await fetch('http://localhost:5000/shop/find-shop/', {
+        const response = await fetch('https://print-easy.onrender.com/shop/find-shop/', {
           method: 'POST',
           // credentials: 'include',
           headers: {
