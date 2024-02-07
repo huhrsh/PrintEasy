@@ -42,7 +42,7 @@ function BusnessSignUp(){
         }
         // console.log(formData);
         try {
-            const response = await fetch('https://print-easy.vercel.app/shop/sign-up', {
+            const response = await fetch('https://print-easy.onrender.com/shop/sign-up', {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',
