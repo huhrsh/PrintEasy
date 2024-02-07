@@ -175,7 +175,7 @@ function Navbar(){
     useEffect(() => {
         const fetchUserData = async () => {
             try {
-              const response = await fetch('http://localhost:5000/users/get-user-data',{
+              const response = await fetch('https://print-easy.onrender.com/users/get-user-data',{
                 method:'POST',
                 headers: {
                 'Content-Type': 'application/json',
@@ -209,7 +209,7 @@ function Navbar(){
 
     useEffect(()=>{
         SignOut= async function(){
-            const response=await fetch('http://localhost:5000/users/sign-out',{
+            const response=await fetch('https://print-easy.onrender.com/users/sign-out',{
                 method:'POST',
                 headers:{
                     'Content-Type':'application/json'
