@@ -13,7 +13,7 @@ const PdfViewer = ({ file }) => {
   useEffect(() => {
     const fetchPdfData = async () => {
       try {
-        const response = await fetch(`/print/get-pdf`,{
+        const response = await fetch(`https://print-easy.onrender.com/print/get-pdf`,{
           method:"POST",
           credentials:"omit",
           headers:{
@@ -71,7 +71,7 @@ function ShopOrder({order, setOrder}){
         let time=order.createdAt.split('T')[0];
         let token=order.tokenNumber;
         console.log("Download is: ",download);
-        const response=await fetch('http://localhost:5000/print/download',{
+        const response=await fetch('https://print-easy.onrender.com/print/download',{
             method:'POST',
             // credentials:'include',
             headers:{
@@ -96,7 +96,7 @@ function ShopOrder({order, setOrder}){
         // let time=order.createdAt.split('T')[0];
         // let token=order.tokenNumber;
         // console.log("Download is: ",download);
-        const response=await fetch("http://localhost:5000/print/single-download",{
+        const response=await fetch("https://print-easy.onrender.com/print/single-download",{
         // const response=await fetch('http://localhost:5000/print/single-download',{
             method:'POST',
             // credentials:'include',
@@ -126,7 +126,7 @@ function ShopOrder({order, setOrder}){
     // },[])
 
     async function orderCompleted(){
-      const response=await fetch('http://localhost:5000/print/order-completed',{
+      const response=await fetch('https://print-easy.onrender.com/print/order-completed',{
             method:'POST',
             // credentials:'include',
             headers:{
