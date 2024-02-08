@@ -37,7 +37,8 @@ app.use(session({
     },
     store:MongoStore.create({
         // mongoUrl:'mongodb+srv://harshj2010:W6k2pwIcJ9MdircD@cluster0.nynygsd.mongodb.net/?retryWrites=true&w=majority',
-        mongoUrl: "mongodb+srv://harshj2010:W6k2pwIcJ9MdircD@cluster0.nynygsd.mongodb.net/?retryWrites=true&w=majority"
+        mongoUrl: "mongodb+srv://harshj2010:W6k2pwIcJ9MdircD@cluster0.nynygsd.mongodb.net/?retryWrites=true&w=majority",
+        autoRemove: 'disabled',
     })
 }))
 
