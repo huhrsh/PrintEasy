@@ -3,6 +3,11 @@
 
 Printing made online and easy
 
+Deployed Link: [https://print-easy.vercel.app](https://print-easy.vercel.app)
+
+- _The hosting platform does not provide persistent disk, and so files might fail to load everytime the server restarts._
+- _The geolocation feature is yet to be implemented._
+
 ![App Screenshot](https://res.cloudinary.com/dddnk0dcn/image/upload/v1706857955/Screenshot_329_rjqyjo.png?text=Home+Page)
 
 PrintEasy streamlines the process of printing orders effortlessly by putting the ability to transfer files to the shop right at your fingertips.
