@@ -1,0 +1,133 @@
+
+.shop-main{
+    padding: 0.5% 2%;
+  }
+  
+  .shop-orders-sub{
+    padding: 0.5% 1.5%;
+  
+  }
+  
+  .shop-individual-order{
+    margin-top: 1%;
+    @apply max-sm:w-full
+  }
+  
+  /* orders  */
+  
+  .stop-order{
+    background-color: #e5383b !important;
+    color: white;
+    &:hover{
+      background-color:  #cc272a !important;
+    }
+  }
+  
+  
+  .shop-options-div{
+    background-color: #f4f9ff;
+    width: 93%;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%);
+    height: 9vh;
+    display: flex;
+    margin-top: 1.5%;
+    padding:0 2%;
+    border-radius: 5px;
+    align-items: center;
+    justify-content: space-between;
+    @apply max-sm:mt-4 max-sm:flex-col max-sm:h-auto max-sm:py-2 max-sm:gap-2 max-sm:items-start max-sm:text-xl
+  }
+  
+  
+  .print-available-main{
+    width: 60%;
+    /* background-color: palegoldenrod; */
+    display: flex;
+    flex-direction: column;
+    @apply max-sm:w-full
+}
+
+.print-available{
+    /* background-color: rebeccapurple; */
+    display: flex;
+    align-items: center;
+    font-size: 1.1rem;
+    width: 50%;
+    @apply max-sm:w-full max-sm:flex-shrink-0
+  }
+  
+  .print-available-outer{
+    width: 20px;
+    aspect-ratio: 1;
+    margin-bottom: -0.7%;
+    cursor: pointer;
+    padding: 0.2%;
+    border-radius: 2px;
+    border-radius: 2vw;
+    overflow: hidden;
+    border: 2px solid #4b93ff;
+    @apply max-sm:flex-shrink-0 max-sm:rounded-full
+    /* background-color: #4b93ff; */
+    /* display: flex;
+    align-items: center;
+    justify-content: center; */
+  }
+  
+  .print-is-available{
+    width: 100%;
+    border-radius: 5px;
+    border-radius: 2vw;
+    aspect-ratio: 1;
+    background-color: #95befb;
+  }
+  
+  .print-unavailable{
+    background-color: #e5383b;
+  }
+  
+  .pdf-warning{
+    color: #e5383b;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    margin-top: -2%;
+    gap: 1.2vw;
+  }
+  
+  .pdf-warning img{
+    width: 30px;
+  }
+  
+  .start-stop-order{
+    padding: 0 1.5%;
+    border-radius: 50px;
+    border: none;
+    font-size: 1.1rem;
+    word-spacing: 0.1rem;
+    cursor: pointer;
+    height: 6.4vh;
+    background-color: #cee1ff;
+    transition: all ease-in-out 0.3s;
+    @apply max-sm:w-fit max-sm:py-2 max-sm:h-auto max-sm:px-3;
+    &:hover{
+      background-color: #aaccff;
+    }
+  }
+  
+  
+  .cross-button{
+    position: absolute;
+    top: 0%;
+    background-color: white;
+    z-index: 3;
+    cursor: pointer;
+    right: 0%;
+    width: 3.5%;
+    transform: translate(50%,-50%);
+    filter: hue-rotate(100deg);
+    aspect-ratio: 1;
+    /* transition: all ease-in-out 0.2s; */
+  }
+  

@@ -1,0 +1,102 @@
+
+.home{
+    /* background-color: red; */
+    height: 80vh;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  .business-sign{
+    @apply fixed bottom-6 left-0 text-center max-sm:text-center max-sm:text-xl w-screen;
+  }
+  
+  .location-div{
+    background-color: red;
+    width: 100%;
+    height: 12vh;
+    display: flex;
+    text-align: center;
+    align-items: center;
+  }
+  
+  .home-options{
+    /* background-color: red; */
+    height: 57vh;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    @apply max-sm:flex-col max-sm:h-auto max-sm:px-16 max-sm:gap-4 sm:hidden; 
+  }
+  
+  .home-options2{
+    /* background-color: red; */
+    height: 57vh;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    @apply max-sm:flex-col max-sm:h-auto max-sm:px-16 max-sm:gap-4 max-sm:hidden; 
+  }
+  
+  .single-option{
+    background-color: #fff;
+    padding: 0%;
+    box-shadow: 0 0 1px 1px hsl(210, 100%, 90%);
+    height: 100%;
+    aspect-ratio: 1/1.1;
+    background-size: contain;
+    background-repeat: no-repeat;
+    border-radius: 3%;
+    text-decoration: none;
+    transition: all ease-in-out .3s;
+    z-index: 0;
+    @apply max-sm:w-full;
+    &:hover{
+      box-shadow: 0 0 6px 3px #bfd8ffbb;
+    }
+  }
+  
+  .send{
+    transform: rotateY(180deg);
+    background-image: url("https://img.freepik.com/free-vector/mail-sent-concept-illustration_114360-96.jpg?size=626&ext=jpg&uid=R95045313&ga=GA1.1.1294546411.1698236110&semt=sph");
+  }
+  
+  .receive{
+    background-image: url("https://img.freepik.com/free-vector/download-concept-illustration_114360-2857.jpg?size=626&ext=jpg&uid=R95045313&ga=GA1.1.1294546411.1698236110&semt=sph");
+  }
+  
+  .print{
+    background-image:url("https://img.freepik.com/free-vector/printer-concept-illustration_114360-2587.jpg?size=626&ext=jpg&uid=R95045313&ga=GA1.1.1294546411.1698236110&semt=ais") ;
+  }
+  
+  .send>.inside-option{
+    transform: rotateY(180deg);
+  }
+  
+  .inside-option{
+    display: flex;
+    height: 100%;
+    width: 100%;
+    align-items: last baseline;
+    /* align-items: center; */
+    justify-content: center;
+    border-radius: 4px;
+    /* font-size: 1.25rem; */
+    padding-bottom: 6%;
+    /* @apply max-sm:w-screen; */
+    /* font-family: montserrat !important; */
+  }
+  
+  .inside-option>p{
+    font-size: 1.32rem;
+    letter-spacing: 0.08rem;
+    color: #444;
+    font-weight: 300;
+    font-family: 'comfortaa light' !important;
+    font-family: 'quicksand' !important;
+  }
+  

@@ -1,0 +1,86 @@
+.navbar{
+  display: flex;
+  padding: 1% 5% 1% 2%;
+  background-color: #e9f3ff;
+  box-shadow: 0 0 2px 1px #dee2e6;
+  height: 12vh;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 5;
+  @apply  max-sm:h-20
+}
+
+
+.printeasy-heading{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 13%;
+    padding-left: 2%;
+    font-family: raleway;
+    font-family: "Afacad";
+    font-size: 2.3rem;
+    color: #333;
+    font-weight: 400;
+    text-decoration: none;
+  }
+  
+  .printeasy-img{
+    margin-top: -2%;
+    width: 19%;
+    filter: drop-shadow(-0.5px -0.5px 2px #555);
+    /* display: none; */
+  }
+  
+  .user,.order{
+    text-decoration: none;
+    padding: 0.25% 1%;
+    display: flex;
+    justify-content: center;
+    gap: 5%;
+    align-items: center;
+    min-width: 8vw;
+    height: 80%;
+    border-radius: 50px;
+    border: none;
+    background-color: transparent;
+    font-size: 1.25rem;
+    font-weight: 300;
+    color: #333;
+    transition: all ease-in-out .3s;
+    cursor: pointer;
+    white-space: nowrap;
+    @apply max-sm:text-xl max-sm:px-3 max-sm:h-auto max-sm:py-1.5 max-sm:w-fit;
+    &:hover{
+      background-color: #bfd8ff;
+      box-shadow: 0 0 0 #bfd8ff;
+    }
+  }
+  
+  .order{
+    padding: 0 2.5%;
+    @apply max-sm:text-xl max-sm:px-4 max-sm:h-auto max-sm:py-1.5 max-sm:w-fit;
+  }
+  
+  .order>img{
+    height: 75%;
+  }
+  
+  .user>img{
+    height: 55%;
+    @apply max-sm:h-5;
+  }
+  
+  .signed-user-nav{
+    height: 100%;
+    width: 50%;
+    /* background-color: red; */
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 5vw;
+  }
+  

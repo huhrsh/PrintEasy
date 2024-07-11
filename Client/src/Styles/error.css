@@ -1,0 +1,35 @@
+/* error */
+
+.error-main{
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .error-main img{
+    width: 20vw;
+    margin: 2%;
+  }
+  
+  .error-main .go-back-button{
+    cursor: pointer;
+    text-decoration: none;
+    background-color: #ecf1ff;
+    padding: 0.7% 2%;
+    margin: 1%;
+    color: #333;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    transition: all ease-in-out 0.3s;
+    &:hover{
+        background-color: #bfd8ff;
+    }
+  }
+  
+  .error-text{
+    font-size: 1.2rem;
+  }
+  
+  
