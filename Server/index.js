@@ -33,7 +33,7 @@ app.use(session({
   saveUninitialized: false,
   resave: false,
   cookie: {
-    httpOnly: true, 
+    // httpOnly: true, 
     secure: process.env.name === 'production',
     sameSite: process.env.name==='production'?'None':"Lax", 
     maxAge: (1000 * 60 * 60 * 24 * 31)
