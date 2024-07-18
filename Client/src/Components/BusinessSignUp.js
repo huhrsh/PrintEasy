@@ -55,7 +55,7 @@ function BusnessSignUp(){
             });
         
             data = await response.text();
-            console.log("Response.text: ",data); // handle the response from the server
+            // console.log("Response.text: ",data); // handle the response from the server
           } catch (error) {
             console.error('Error submitting form:', error);
         }

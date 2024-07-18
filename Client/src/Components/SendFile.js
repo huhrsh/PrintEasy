@@ -43,7 +43,7 @@ function SendFile() {
 
     function handleDrop(e){
         e.preventDefault();
-        console.log(e.dataTransfer.files);
+        // console.log(e.dataTransfer.files);
         setFileData(e.dataTransfer.files);
         setState("preview");
     }
@@ -52,7 +52,7 @@ function SendFile() {
         // console.log(e);
         const files=document.getElementsByClassName('choose-file')[0];
         setFileData(files.files);
-        console.log(files.files);
+        // console.log(files.files);
         setState("preview")
     }
 

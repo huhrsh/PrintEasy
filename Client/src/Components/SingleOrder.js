@@ -86,7 +86,6 @@ function SingleOrder({ user, order, cross, getPrintDetails, reRender, setReRende
 
   useEffect(() => {
     getPrintDetails(order._id)
-    console.log("Shit")
   }, [])
 
   let intervalId;
@@ -217,7 +216,7 @@ function SingleOrder({ user, order, cross, getPrintDetails, reRender, setReRende
             <div className="user-files">
               {order.files.map((file, index) => {
                 return (
-                  <div className="user-single-order">
+                  <div className="user-single-order" key={index}>
                     {/* <div className="shop-order-number">{index+1}</div> */}
                     <div className="shop-details-container">
                       <PdfViewer file={file} />

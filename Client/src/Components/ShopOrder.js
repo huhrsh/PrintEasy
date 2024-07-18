@@ -66,7 +66,7 @@ function ShopOrder({order, setOrder}){
         let files=order.files;
         let time=order.createdAt.split('T')[0];
         let token=order.tokenNumber;
-        console.log("Download is: ",download);
+        // console.log("Download is: ",download);
         const response=await fetch(apiUrl+'/print/download',{
             method:'POST',
             // credentials:'include',

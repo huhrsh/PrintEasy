@@ -34,9 +34,9 @@ function Shop() {
 
         if (message.type === "newPrint") {
           const { shopId, printId, priority } = message;
-          console.log(
-            `New print received for shop ${shopId}. Print ID: ${printId}, priority: ${priority}`
-          );
+          // console.log(
+          //   `New print received for shop ${shopId}. Print ID: ${printId}, priority: ${priority}`
+          // );
           if (priority) {
             toast("New priority order received", {
               progressStyle: { background: "#95befb" },
@@ -124,7 +124,7 @@ function Shop() {
     body: JSON.stringify(object)
     })
     if(response.ok){
-      console.log("Line 1");//
+      // console.log("Line 1");//
       fetchShopDetails(shop._id)
     }
     else{

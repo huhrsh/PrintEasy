@@ -1,6 +1,7 @@
 require('dotenv').config()
 
 const development={
+    name:'development',
     db:process.env.DEV_DATABASE_URL,
     client_url:process.env.DEV_CLIENT_URL,
     cloudinary: {
@@ -10,10 +11,10 @@ const development={
     },
     session_name:process.env.SESSION_NAME,
     session_secret:process.env.SESSION_SECRET,
-
 }
 
 const production={
+    name:'production',
     db:process.env.PROD_DATABASE_URL,
     client_url:process.env.PROD_CLIENT_URL,
     cloudinary: {

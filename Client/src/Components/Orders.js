@@ -86,7 +86,7 @@ function Orders(){
             body:JSON.stringify({id})
         })
         let data = await respose.json()
-        console.log(data)
+        // console.log(data)
         if(data.message){
             toast.error(data.message);
             return;
@@ -175,7 +175,7 @@ function Orders(){
                                 </div>
                                 <div className="individual-order-div">
                                     <h4>Amount paid : </h4>
-                                    <p>₹{item.totalPrice}</p>
+                                    <p>₹{item.totalPrice + (item.tokenNumber===-1?10:0)}</p>
                                 </div>
                             </div>
                         )

@@ -35,14 +35,14 @@ function BusinessSignIn(){
               credentials:"include",
             });
             data=await response.json();
-            console.log("Response.text: ", data); // handle the response from the server
+            // console.log("Response.text: ", data);
           } catch (error) {
             console.error('Error submitting form:', error);
         }
         // setEmail("");
         // setPassword("");
         if(data){
-          console.log(data);
+          // console.log(data);
           dispatch(setShop(data.shop));
           toast.success("Signed in")
           // const user=data.user;
@@ -52,7 +52,7 @@ function BusinessSignIn(){
           toast.warn("Password does not match")
         }
         else{
-          console.log(data)
+          // console.log(data)
           toast.error("Invalid credentials");
         }
       } 

@@ -93,7 +93,7 @@ function PrintFile() {
     formData.append('priority', priorityPrint);
     formData.append('totalPrice', totalPrice);
     formData.append("fileInfo", JSON.stringify(fileInfo))
-    console.log("Form Data is: ", formData)
+    // console.log("Form Data is: ", formData)
     setLoading(true)
     const response = await fetch(apiUrl + '/print/new-print', {
       method: 'POST',
@@ -107,7 +107,7 @@ function PrintFile() {
     toast.success(responseData.text);
     // setUserToken(responseData.tokenNumber);
     // setUploadedFile(responseData.file)
-    console.log(responseData);
+    // console.log(responseData);
     // console.log(uploadedFile)
     setLoading(false)
     setFileData([]);
@@ -123,7 +123,7 @@ function PrintFile() {
       toast.warn("We accept only pdf files");
     }
     setFileData(filesArray);
-    console.log(filesArray);
+    // console.log(filesArray);
     setState("preview");
   }
 
@@ -180,7 +180,7 @@ function PrintFile() {
   function showPosition(position) {
     const latitude = position.coords.latitude;
     const longitude = position.coords.longitude;
-    console.log("Latitude: " + latitude + "<br>Longitude: " + longitude);
+    // console.log("Latitude: " + latitude + "<br>Longitude: " + longitude);
   }
 
   function showError(error) {
@@ -394,7 +394,7 @@ function PrintFile() {
                     <>
                       {shopList.length > 0 && <>
                         <div className="shop-alert-div">
-                          <p className="shop-alert">Shops highlighted in <div className="red-color-div"></div> color have stopped accepting orders for the day.</p>
+                          <div className="shop-alert">Shops highlighted in <div className="red-color-div"></div> color have stopped accepting orders for the day.</div>
                           <p className="shop-alert-2"> If you choose one of these shops, your files will be printed on the next business day.</p>
                         </div>
                         <div className="shop-list2 store-search-heading">
@@ -470,7 +470,7 @@ function PrintFile() {
           }
           {
             state === "upload" ? <form className="send-form" encType="multipart/form-data">
-              <p className="pdf-warning"><img src="https://cdn-icons-png.flaticon.com/128/2797/2797387.png" />We are accepting only pdfs for now!</p>
+              <p className="pdf-warning"><img src="https://cdn-icons-png.flaticon.com/128/2797/2797387.png" alt="warning" />We are accepting only pdfs for now!</p>
               <p className="drop-p" >Drag and drop your files in the box</p>
               <div className="drop-area" onDrop={(e) => { handleDrop(e) }} onDragOver={(e) => { e.preventDefault() }}>
                 <div className="drop-cover">

@@ -29,7 +29,7 @@ function ReceiveFile(){
         if(e){
             e.preventDefault();
         }
-        console.log(token)
+        // console.log(token)
         const response = await fetch(apiUrl+'/file/receive/',{
             method:'POST',
             // credentials:'include',
@@ -43,7 +43,7 @@ function ReceiveFile(){
         if(responseData.text==="Files fetched"){
             toast.success(responseData.text);
             setFiles(responseData.files.files)
-            console.log(responseData)
+            // console.log(responseData)
         }
         else if(responseData.text.startsWith("Incorrect")){
             toast.warn(responseData.text)

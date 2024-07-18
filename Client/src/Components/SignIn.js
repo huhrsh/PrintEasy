@@ -55,7 +55,7 @@ function SignIn(){
         }
         else{
           if(data.shop || data.user){
-            console.log(data);
+            // console.log(data);
             if(data.shop){
               toast.success("Signed in")
               dispatch(setShop(data.shop));
