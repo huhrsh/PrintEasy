@@ -5,6 +5,7 @@ Printing made online and easy
 
 Deployed Link: [https://print-easy.vercel.app](https://print-easy.vercel.app)
 
+- _There is an issue in cookies in the hosted website._
 - _The geolocation feature is yet to be implemented._
 - _"PrintEasy Outlet" is the only store for now._
 ![App Screenshot](https://res.cloudinary.com/dddnk0dcn/image/upload/v1706857955/Screenshot_329_rjqyjo.png?text=Home+Page)
